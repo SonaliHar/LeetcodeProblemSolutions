@@ -44,6 +44,19 @@ Output:
 | 3         | 2016-03-02  |
 +-----------+-------------+
 
+Accepted
+Runtime: 230 ms
+
+
 */
 
+with cte as (
+select player_id     ,
+event_date ,
+rank() over(partition by player_id order by event_date ) as rnk
+ from Activity
+)
 
+Select player_id    ,event_date as first_login 
+from cte 
+where rnk=1
