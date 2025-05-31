@@ -47,5 +47,28 @@ In 2015-01-04, the temperature was higher than the previous day (20 -> 30).
 
 
 
-Solution :
+Solution : Runtime: 287 ms
 */
+
+with cte as (
+Select id ,recordDate as original_recordDate, 
+temperature as original_temperature,
+lead (id) over( order by recordDate ) lead_id,
+lead (recordDate) over( order by recordDate ) lead_recordDate,
+lead (temperature) over( order by recordDate ) lead_temperature
+from Weather)
+
+select lead_id  as id 
+from cte 
+where lead_id is not null
+and datediff(day,original_recordDate,lead_recordDate)=1
+and lead_temperature>original_temperature;
+
+
+
+select w1.id as Id
+from Weather w1
+join Weather w2 on w1.recordDate = DATEADD(day, 1, w2.recordDate)
+where w1.temperature > w2.temperature;
+
+
