@@ -1,4 +1,4 @@
-#175. Combine Two Tables
+/*175. Combine Two Tables
 
 Table: Person
 
@@ -64,7 +64,7 @@ There is no address in the address table for the personId = 1 so we return null 
 addressId = 1 contains information about the address of personId = 2.
 
 
-Solution : Acepted with runtime 445 msBeats 50.47%
+Solution : Acepted with runtime 445 msBeats 50.47% */
 
 Select firstName,lastName,city,state       
 from Person P left join Address A 
