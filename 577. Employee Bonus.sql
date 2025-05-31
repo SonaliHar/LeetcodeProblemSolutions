@@ -62,7 +62,13 @@ Output:
 | Dan  | 500   |
 +------+-------+
 
-Solution :
+Solution :Runtime: 353 ms 
 
 */
+
+Select E.name,B.bonus
+from  Employee E
+left join Bonus B
+on E.empId = B.empId
+where B.bonus<1000 or B.empId is null
 
