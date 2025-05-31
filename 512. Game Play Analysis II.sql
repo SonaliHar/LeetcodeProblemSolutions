@@ -43,6 +43,25 @@ Output:
 | 3         | 1         |
 +-----------+-----------+
 
-Solution : 
+Solution :
+Accepted
+Runtime: 222 ms
 
 */
+
+with cte as (
+select player_id ,
+event_date ,device_id  ,  
+rank() over(partition by player_id order by event_date ) as rnk
+ from Activity
+)
+
+Select player_id    ,device_id     as device_id     
+from cte 
+where rnk=1
+
+
+
+
+
+
