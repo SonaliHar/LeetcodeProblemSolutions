@@ -46,10 +46,35 @@ So the result is customer_number 3.
 Follow up: What if more than one customer has the largest number of orders, can you find all the customer_number in this case?
 
 Solution - 
-
+runtime
+494
+ms
+Beats
+53.37%
 
 
 */
+
+Select customer_number
+from (
+select customer_number,rank() over(order by cnt desc) as rnk1
+from (
+Select count(order_number) as cnt , customer_number
+from Orders
+group by customer_number
+)A
+) B
+where rnk1=1;
+
+
+Select top 1 customer_number
+from Orders
+group by customer_number
+order by count(order_number) desc
+
+
+
+
 
 
 
