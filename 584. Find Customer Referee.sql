@@ -43,6 +43,17 @@ Output:
 | Bill |
 | Zack |
 +------+
+
+Accepted - Runtime: 945 ms
+
 */
 
+Select name 
+from Customer
+where referee_id not in (2) or referee_id is null;
 
+or 
+
+Select name 
+from Customer
+where isnull(referee_id,0) not in (2);
