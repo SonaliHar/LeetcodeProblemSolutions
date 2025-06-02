@@ -49,7 +49,14 @@ Explanation:
 - Biology has 1 student, so we do not include it.
 - Computer has 1 student, so we do not include it.
 
+Accepted
+Runtime: 208 ms
 */
 
+
+Select class
+from Courses
+group by class
+having count(student) >=5
 
 
