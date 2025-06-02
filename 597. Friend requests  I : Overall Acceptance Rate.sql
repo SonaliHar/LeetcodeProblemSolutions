@@ -94,6 +94,21 @@ from RequestAccepted
 Select distinct sender_id ,send_to_id 
 from FriendRequest
 )A),0.00) as decimal(10,2))
- as accept_rate 
+ as accept_rate ;
+
+
+WITH total_request AS (
+    SELECT COUNT(DISTINCT(CONCAT(sender_id,send_to_id ))) AS denominator FROM FriendRequest
+),
+total_accept AS(
+    SELECT COUNT(DISTINCT(CONCAT(requester_id,accepter_id))) AS numerator FROM RequestAccepted
+)
+
+SELECT 
+    CASE 
+        WHEN denominator = 0 then 0
+        ELSE ROUND(CAST(numerator AS FLOAT) / CAST(denominator AS FLOAT),2) 
+    END as accept_rate
+FROM total_request, total_accept
 
 
