@@ -1,5 +1,8 @@
 /*
 
+Note : there is a formula that we are using to see weather they can form a triangle.
+      every line should be less than sum of other two .
+
 Table: Triangle
 
 +-------------+------+
@@ -44,7 +47,7 @@ Runtime: 205 ms
 */
 
 Select x,y,z,
- case when x+y >z and 
+case when x+y >z and 
 y+z >x and
 x+z >y then 'Yes'
 else 'No' end as 'triangle'
