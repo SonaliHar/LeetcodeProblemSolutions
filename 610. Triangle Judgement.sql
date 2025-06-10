@@ -38,7 +38,17 @@ Output:
 | 13 | 15 | 30 | No       |
 | 10 | 20 | 15 | Yes      |
 +----+----+----+----------+
+
+Accepted
+Runtime: 205 ms
 */
+
+Select x,y,z,
+ case when x+y >z and 
+y+z >x and
+x+z >y then 'Yes'
+else 'No' end as 'triangle'
+from Triangle 
 
 
 
