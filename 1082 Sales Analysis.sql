@@ -64,8 +64,29 @@ Output:
 | 3           |
 +-------------+
 Explanation: Both sellers with id 1 and 3 sold products with the most total price of 2800.
-
+Soultion : Accepted
+Runtime: 234 ms
 */
+
+
+
+/* Write your T-SQL query statement below */
+with cte as (select top 1 max_price from (
+Select sum(price) as max_price
+from Sales
+group by seller_id 
+) A
+order by max_price desc
+) 
+
+--select seller_id from(
+select distinct seller_id from (
+Select  *,sum(price) over(partition by seller_id order by seller_id desc) rnk
+from Sales
+)A
+where rnk= (select max_price from cte)
+
+
 
 
 
