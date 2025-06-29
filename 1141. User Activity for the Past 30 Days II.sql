@@ -55,6 +55,21 @@ Explanation: User 1 and 2 each had 1 session in the past 30 days while user 3 ha
 */
 
 
+with cte as (
+select user_id ,count(session_id) as cnt_session
+from (
+Select distinct  user_id, session_id
+from Activity
+where 
+activity_date between cast(dateadd(day,-29,'2019-07-27') as date) and '2019-07-27'
+ 
+)A
+group by user_id
+)
+
+Select  case when count(user_id) is null or count(user_id)= 0 then 0
+else ROUND(cast(isnull(sum(cnt_session),0) as float)/count(user_id),2) end as average_sessions_per_user 
+from cte 
 
 
 
